@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .btn {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>COUPANG</h1>
+    <p>회원 기능</p>
+    <div>
+        <a href="/members/new" class="btn btn-primary">주문 하기</a>
+        <a href="/members" class="btn btn-secondary">주문 목록</a>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
