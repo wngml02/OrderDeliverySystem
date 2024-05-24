@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>상품 주문</title>
+    <title> 주문</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -32,6 +32,7 @@
             width: 100%;
         }
     </style>
+
 </head>
 
 <body>
@@ -40,14 +41,34 @@
         <form action="/members/new" method="post">
             <div class="form-group">
                 <label for="name">이름</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요." required>
                 <label for="address">배송 주소</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="주소를 입력하세요" required>
+                <input type="text" class="form-control" id="address" name="address" placeholder="주소를 입력하세요." required>
             </div>
-            <button type="submit" class="btn btn-primary">주문</button>
+            <button type="submit" class="btn btn-primary">주문하기</button>
         </form>
     </div>
     <!-- /container -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const words = ['칫솔', '청소기', '치약', '세제', '바구니', '향수'];
+
+            function getRandomWord() {
+                const randomIndex = Math.floor(Math.random() * words.length);
+                return words[randomIndex];
+            }
+
+            function updateTitle() {
+                const randomWord = getRandomWord();
+                const h2Element = document.querySelector('.container h2');
+                if (h2Element) {
+                    h2Element.textContent = `${randomWord} 주문`;
+                }
+            }
+            updateTitle();
+        });
+    </script>
+
 </body>
 
 </html>
