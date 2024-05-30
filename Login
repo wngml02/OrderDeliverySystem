@@ -1,0 +1,85 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+// Facade Pattern
+class LoginFacade {
+    private HashMap<String, String> userDatabase; // 사용자 정보 저장할 HashMap
+
+    public LoginFacade() {
+        userDatabase = new HashMap<>();
+    }
+
+    public void signUp(String userId, String userPassword) { // 회원가입 관리
+        if (!userDatabase.containsKey(userId)) {
+            userDatabase.put(userId, userPassword);
+            System.out.println("회원가입이 완료되었습니다.\n");
+        } else {
+            System.out.println("이미 존재하는 아이디입니다.\n");
+        }
+    }
+
+    public boolean logIn(String userId, String userPassword) { // 로그인 관리
+        if (userDatabase.containsKey(userId) && userDatabase.get(userId).equals(userPassword)) {
+            System.out.println("로그인에 성공했습니다!");
+            return true;
+        } else {
+            System.out.println("아이디 또는 비밀번호가 올바르지 않습니다.");
+            return false;
+        }
+    }
+}
+
+// 클라이언트
+public class LoginSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        LoginFacade loginFacade = new LoginFacade();
+
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("1. 회원가입");
+            System.out.println("2. 로그인");
+            System.out.println("3. 종료");
+            System.out.print("메뉴를 선택하세요: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    signUp(scanner, loginFacade);
+                    break;
+                case 2:
+                    logIn(scanner, loginFacade);
+                    break;
+                case 3:
+                    exit = true;
+                    System.out.println("프로그램을 종료합니다.");
+                    break;
+                default:
+                    System.out.println("올바른 메뉴를 선택하세요.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static void signUp(Scanner scanner, LoginFacade loginFacade) {
+        System.out.println("회원가입을 진행합니다.");
+        System.out.print("아이디를 입력하세요: ");
+        String newUserId = scanner.nextLine();
+        System.out.print("비밀번호를 입력하세요: ");
+        String newUserPassword = scanner.nextLine();
+
+        loginFacade.signUp(newUserId, newUserPassword);
+    }
+
+    private static void logIn(Scanner scanner, LoginFacade loginFacade) {
+        System.out.println("로그인을 진행합니다.");
+        System.out.print("아이디를 입력하세요: ");
+        String userId = scanner.nextLine();
+        System.out.print("비밀번호를 입력하세요: ");
+        String userPassword = scanner.nextLine();
+
+        loginFacade.logIn(userId, userPassword);
+    }
+}
